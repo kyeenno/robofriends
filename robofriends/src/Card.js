@@ -1,7 +1,6 @@
-// React => functions that render parameters which are given by properties and values
 import React from 'react';
 
-const Card = ({ name, email }) => { // { name, role } = props (<= destructured)
+const Card = ({ name, email }) => {
     return (
         <div className='cards grow shadow-5'>
                 <img src={`https://robohash.org/${name}?150x150`} alt='Robot icon'/>
@@ -13,5 +12,4 @@ const Card = ({ name, email }) => { // { name, role } = props (<= destructured)
     );
 }
 
-export default Card; // exports the Card.js
-// Use <Fragment><Fragment/> for grouping w/o parent element tag (import React, {Fragment} from 'react';)
+export default Card;

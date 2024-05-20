@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
 import Card from './Card';
 
-const CardArray = ({ agents }) => {
+const CardArray = ({ robots }) => {
     return (
         <Fragment>
             {
-                agents.map((id, i) => { // Mapping (for Each) through all the agents 
-                return <Card key={i} id={agents[i].id} name={agents[i].name} email={agents[i].email} />
-                // child elements => key !!! (id didn't work as a unique key)
+                robots.map((id, i) => {
+                return <Card key={i} id={robots[i].id} name={robots[i].name} email={robots[i].email} />
                 })
             }   
         </Fragment>   

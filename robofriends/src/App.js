@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import CardTemplate from './CardArray';
 import SearchBox from './SearchBox';
+import Scroll from './Scroll';
 import './App.css';
 
 // STATE describes the app, changes it - declared in constructor()
@@ -9,7 +10,7 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            agents: [],
+            robots: [],
             searchfield: ''
         }
     }
@@ -17,7 +18,7 @@ class App extends Component {
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users') // method for making request to servers
             .then(response => response.json())
-            .then(users => this.setState({ agents: users }));
+            .then(users => this.setState({ robots: users }));
     }
 
     onSearchChange = (event) => {
@@ -25,18 +26,24 @@ class App extends Component {
     }
 
     render() {
-        const filterAgents = this.state.agents.filter(agent => {
-        return agent.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        const { robots, searchfield } = this.state;
+        const filterRobots = robots.filter(robot => {
+        return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         });
-        return (
-        <Fragment>
-            <div className='header tc'> 
-                <h1>⚡ Riot Robofriends ⚡</h1>
-                <h4>Valorant Agents as Robots</h4>
-                <SearchBox searchChange={this.onSearchChange}/>
-                <CardTemplate agents={filterAgents}/>
-            </div>
-        </Fragment>
+        
+        return !robots.length ?
+        <h1>Loading...</h1> : 
+        (
+            <Fragment>
+                <div className='header tc'> 
+                    <h1>⚡ Robofriends ⚡</h1>
+                    <h4> Search robots </h4>
+                    <SearchBox searchChange={this.onSearchChange}/>
+                    <Scroll> 
+                        <CardTemplate robots={filterRobots}/>
+                    </Scroll> 
+                </div>
+            </Fragment>
         );
     }
 }
