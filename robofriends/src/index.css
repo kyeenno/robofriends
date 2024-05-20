@@ -12,3 +12,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* HEADER STYLES */
+.header {
+  font-family: 'Teachers', sans-serif;
+  color: rgb(240, 240, 240);
+  margin: 2.5rem;
+ 
+}
+
+.header input {
+    padding: 1rem;
+    border-radius: 5rem;
+    border: 1px solid white;
+    width: 225px;
+    background-color: #424A59;
+}
+
+/* CARDS */
+.cards {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem;
+  margin: 1rem;
+  background: linear-gradient(150deg, #141e30, #243b55);
+  cursor: pointer;
+  border-radius: 3rem;
+}
+
+.cards-container {
+  text-align: center;
+  color: rgb(240, 240, 240);
+}

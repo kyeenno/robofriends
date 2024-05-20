@@ -1,10 +1,9 @@
 import React, { Fragment, Component } from 'react';
+import ErrorBoundry from '../ErrorBoundry';
 import CardTemplate from './CardArray';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
-import './App.css';
-
-// STATE describes the app, changes it - declared in constructor()
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
+import '../index.css';
 
 class App extends Component {
     constructor() {
@@ -16,13 +15,13 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users') // method for making request to servers
+        fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(users => this.setState({ robots: users }));
     }
 
     onSearchChange = (event) => {
-        this.setState({ searchfield: event.target.value }) // searchfield gets updated according to the input
+        this.setState({ searchfield: event.target.value })
     }
 
     render() {
@@ -39,8 +38,10 @@ class App extends Component {
                     <h1>⚡ Robofriends ⚡</h1>
                     <h4> Search robots </h4>
                     <SearchBox searchChange={this.onSearchChange}/>
-                    <Scroll> 
-                        <CardTemplate robots={filterRobots}/>
+                    <Scroll>
+                        <ErrorBoundry>
+                            <CardTemplate robots={filterRobots}/>
+                        </ErrorBoundry>
                     </Scroll> 
                 </div>
             </Fragment>
@@ -48,13 +49,4 @@ class App extends Component {
     }
 }
 
-// onChange => detects change
-
 export default App;
-
-// LOADING bar:
-// if (this.state.agents.lenght === 0) {
-//   return <p>Loading...</p>
-// } else {
-//      return ~default object;
-// }
